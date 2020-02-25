@@ -1,0 +1,25 @@
+
+*node_modules/
+public/
+*.env*
+.eslintrc.json
+.prettierrc
+*.traineddata
+*tesseract.js-ocr-result.pdf
+
+# Created by https://www.gitignore.io/api/code
+# Edit at https://www.gitignore.io/?templates=code
+
+### Code ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# End of https://www.gitignore.io/api/code
+.DS_Store
+client/public/uploads
+*service-account.json
+client/
+*chatbot*.json
