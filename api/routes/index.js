@@ -4,7 +4,7 @@ const passport = require('passport');
 
 const routes = express.Router();
 
-// const users = require('./users');
+const users = require('./users');
 
 // Set static files
 routes.use(express.static(path.join(__dirname, '../../public')));
@@ -12,13 +12,13 @@ routes.use(express.static(path.join(__dirname, '../../public')));
 // Passport Middleware
 routes.use(passport.initialize());
 routes.use(passport.session());
-// require('../policies/passport')(passport);
+require('../policies/passport')(passport);
 
 // bodyParser Middleware
 routes.use(express.json());
 routes.use(express.urlencoded({ extended: true }));
 
-// routes.use('/users', users);
+routes.use('/users', users);
 
 routes.get('/status/health', (req, res) => {
   res.send('GOOD');
