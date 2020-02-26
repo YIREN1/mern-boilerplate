@@ -1,16 +1,7 @@
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
 
-const jwtSecret = process.env.JWT_SECRET;
-
-const signToken = user => {
-  const jwtUser = user;
-  jwtUser.password = undefined;
-  return jwt.sign(jwtUser.toJSON(), jwtSecret, {
-    expiresIn: 604800, // 1 week in seconds
-  });
-};
+const UserService = require('../services/UserService');
 
 const register = async (req, res) => {
   const { name, email, password } = req.body;
@@ -76,7 +67,7 @@ const authenticate = async (req, res) => {
 
   const isMatch = await bcrypt.compare(password, user.password);
   if (isMatch) {
-    const token = signToken(user);
+    const token = UserService.generateJWToken(user);
     return res.json({
       success: true,
       token: `JWT ${token}`,
