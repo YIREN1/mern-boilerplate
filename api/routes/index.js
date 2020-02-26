@@ -32,7 +32,7 @@ routes.get('*', (req, res) => {
 });
 
 // should never get here
-routes.use((req, res, next) => {
+routes.use((req, res) => {
   res.status(404).end('404 not found');
 });
 

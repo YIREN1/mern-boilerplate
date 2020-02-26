@@ -1,4 +1,6 @@
-const mongoose = require('mongoose'); 
+const mongoose = require('mongoose');
+require('colors');
+
 const connectDB = async () => {
   try {
     const connection = await mongoose.connect(process.env.MONGO_URL, {
@@ -8,7 +10,9 @@ const connectDB = async () => {
       useFindAndModify: false,
     });
 
-    console.log(`Connected to: ${connection.connection.host}`.cyan.underline.bold);
+    console.log(
+      `Connected to: ${connection.connection.host}`.cyan.underline.bold,
+    );
   } catch (error) {
     console.log(`Database error: ${error}`.red);
     process.exit(1);

@@ -13,4 +13,3 @@ const generateJWToken = user => {
 module.exports = {
   generateJWToken,
 };
-
