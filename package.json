@@ -3,18 +3,23 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node api/app",
-    "dev": "nodemon api/app"
+    "start": "node app",
+    "dev": "nodemon app"
   },
   "author": "Yi Ren",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.2",
+    "morgan": "^1.9.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0"
   }
 }

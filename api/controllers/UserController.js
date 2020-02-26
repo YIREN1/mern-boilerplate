@@ -13,7 +13,10 @@ const signToken = user => {
 };
 
 const register = async (req, res) => {
-  const { name, email, profileName, password, phone } = req.body;
+  const { name, email, password } = req.body;
+  if (!name || !email || !password) {
+    res.status(400).json({success: false});
+  }
 
   // Check if there is a user with the same email
   let foundUser = await User.findOne({ email });
@@ -36,25 +39,28 @@ const register = async (req, res) => {
     foundUser = Object.assign(foundUser, localSettings);
     await foundUser.save();
 
-    return res.status(200).json({ success: true, msg: 'Registration complete' });
+    return res.status(201).json({ success: true, msg: 'Registration complete' });
   }
-
-  const newUser = {
-    methods: ['local'],
-    name,
-    email,
-    profileName,
-    password,
-    confirmed: false,
-    phone,
-  };
   try {
+    const salt = await bcrypt.genSalt(10);
+    if (!salt) throw Error('Something went wrong with bcrypt');
+
+    const hash = await bcrypt.hash(password, salt);
+    if (!hash) throw Error('Something went wrong hashing the password');
+
+    const newUser = new User({
+      methods: ['local'],
+      name,
+      email,
+      password: hash,
+    });
+
     await User.create(newUser);
     console.log('Registration complete');
-    res.json({ success: true, msg: 'Registration complete' });
+    res.status(201).json({ success: true, msg: 'Registration complete' });
   } catch (error) {
     console.error(error);
-    res.json({ success: false, msg: 'Error: failed to register' });
+    res.status(500).json({ success: false, msg: 'Error: failed to register' });
   }
 };
 
@@ -78,7 +84,6 @@ const authenticate = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
-        profileName: user.profileName,
       },
     });
   }
