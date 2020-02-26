@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const passport = require('passport');
+const morgan = require('morgan');
 
 const routes = express.Router();
 
@@ -17,7 +18,7 @@ require('../policies/passport')(passport);
 // bodyParser Middleware
 routes.use(express.json());
 routes.use(express.urlencoded({ extended: true }));
-
+routes.use(morgan('dev'));
 routes.use('/users', users);
 
 routes.get('/status/health', (req, res) => {

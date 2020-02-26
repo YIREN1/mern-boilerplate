@@ -66,6 +66,7 @@ const authenticate = async (req, res) => {
   const { password } = req.body;
   try {
     const user = await User.findOne({ email });
+    // console.log(user);
     if (!user) {
       return res.json({ success: false, msg: 'Invalid email/password' });
     }
@@ -76,7 +77,7 @@ const authenticate = async (req, res) => {
         success: true,
         token: `JWT ${token}`,
         user: {
-          id: user._id,
+          id: user.id,
           name: user.name,
           email: user.email,
         },
@@ -84,6 +85,7 @@ const authenticate = async (req, res) => {
     }
     return res.json({ success: false, msg: 'Invalid email or password' });
   } catch (error) {
+    console.error(`${error.message}`.red);
     return res
       .status(500)
       .json({ success: false, msg: 'Internal Server Error' });
