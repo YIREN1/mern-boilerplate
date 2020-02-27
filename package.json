@@ -27,8 +27,7 @@
   },
   "lint-staged": {
     "{api,assets,config,test}/**/*.{js,jsx,ts,tsx}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "devDependencies": {
