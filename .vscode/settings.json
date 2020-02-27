@@ -5,4 +5,5 @@
     "typescript",
     "typescriptreact"
   ],
+  "eslint.workingDirectories": [{ "mode": "auto" }]
 }
