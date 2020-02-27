@@ -9,10 +9,11 @@ const passportJWT = passport.authenticate('jwt', { session: false });
 
 // Resigter
 router.post('/register', UsersController.register);
-
 // Authenticate
 router.post('/authenticate', UsersController.authenticate);
 // Profile
 router.get('/profile', passportJWT, UsersController.getProfile);
+
+router.get('/current', passportJWT, UsersController.getCurrentUser);
 
 module.exports = router;

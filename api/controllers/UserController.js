@@ -97,8 +97,15 @@ const getProfile = (req, res) => {
   res.json({ success: true });
 };
 
+const getCurrentUser = (req, res) => {
+  const { user } = req;
+  user.password = undefined;
+  res.json({ success: true, user });
+};
+
 module.exports = {
   register,
   authenticate,
   getProfile,
+  getCurrentUser,
 };
