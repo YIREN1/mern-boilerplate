@@ -28,7 +28,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": ["react-app", "prettier"]
+    "extends": ["react-app", "prettier"],
+    "parserOptions": {
+        "sourceType": "module"
+    }
   },
   "browserslist": {
     "production": [
