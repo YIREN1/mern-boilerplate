@@ -9,6 +9,7 @@ import {
   Button,
   Modal,
 } from 'antd';
+import { withContext } from '../../context/AppContext';
 
 const { Option } = Select;
 
@@ -23,6 +24,7 @@ class RegistrationForm extends React.Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        this.props.register(values);
       }
     });
   };
@@ -87,7 +89,7 @@ class RegistrationForm extends React.Component {
 
     return (
       <Modal
-        visible={visible}
+        visible={true}
         title="Create a new collection"
         okText="Create"
         onCancel={onCancel}
@@ -136,18 +138,18 @@ class RegistrationForm extends React.Component {
           <Form.Item
             label={
               <span>
-                Nickname&nbsp;
+                Name&nbsp;
                 <Tooltip title="What do you want others to call you?">
                   <Icon type="question-circle-o" />
                 </Tooltip>
               </span>
             }
           >
-            {getFieldDecorator('nickname', {
+            {getFieldDecorator('name', {
               rules: [
                 {
                   required: true,
-                  message: 'Please input your nickname!',
+                  message: 'Please input your name!',
                   whitespace: true,
                 },
               ],
@@ -186,5 +188,4 @@ class RegistrationForm extends React.Component {
 const WrappedRegistrationForm = Form.create({ name: 'register' })(
   RegistrationForm,
 );
-
-export default WrappedRegistrationForm;
+export default withContext(WrappedRegistrationForm);

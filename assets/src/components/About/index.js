@@ -42,9 +42,11 @@ class AboutPage extends React.Component {
         <LoginModal
           wrappedComponentRef={this.saveFormRef}
           visible={this.state.visible}
-          onCancel={this.handleCancel}
-          onCreate={this.handleCreate}
         />
+        {/* <RegisterModal
+          wrappedComponentRef={this.saveFormRef}
+          visible={this.state.visible}
+        /> */}
       </div>
     );
   }

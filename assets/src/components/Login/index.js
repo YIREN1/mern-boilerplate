@@ -1,12 +1,14 @@
 import React from 'react';
 import { Form, Icon, Input, Button, Checkbox, Modal } from 'antd';
 import './style.css';
+import { withContext } from '../../context/AppContext';
 class NormalLoginForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        this.props.authenticate(values);
       }
     });
   };
@@ -15,24 +17,17 @@ class NormalLoginForm extends React.Component {
     const { visible, onCancel, onCreate, form } = this.props;
     const { getFieldDecorator } = this.props.form;
     return (
-      <Modal
-        visible={visible}
-        title="Create a new collection"
-        okText="Create"
-        onCancel={onCancel}
-      >
+      <Modal visible={visible} title="Create a new collection">
         <Form onSubmit={this.handleSubmit} className="login-form">
           <Form.Item>
-            {getFieldDecorator('username', {
-              rules: [
-                { required: true, message: 'Please input your username!' },
-              ],
+            {getFieldDecorator('email', {
+              rules: [{ required: true, message: 'Please input your email!' }],
             })(
               <Input
                 prefix={
-                  <Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />
+                  <Icon type="email" style={{ color: 'rgba(0,0,0,.25)' }} />
                 }
-                placeholder="Username"
+                placeholder="email"
               />,
             )}
           </Form.Item>
@@ -78,4 +73,4 @@ const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(
   NormalLoginForm,
 );
 
-export default WrappedNormalLoginForm;
+export default withContext(WrappedNormalLoginForm);

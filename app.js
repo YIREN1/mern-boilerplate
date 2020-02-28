@@ -7,7 +7,7 @@ const ConnectDB = require('./api/config/mongo');
 const app = express();
 ConnectDB();
 //  Connect all our routes to our application
-app.use('/api/v1', routes);
+app.use('/', routes);
 
 // Port Number
 const port = process.env.PORT || 5000;
