@@ -98,7 +98,7 @@ const authenticate = async (req, res) => {
 
 const getProfile = (req, res) => {
   console.log('I managed to get here!');
-  res.json({ success: true });
+  return res.json({ success: true, msg: 'secret: 1234' });
 };
 
 const getCurrentUser = (req, res) => {
