@@ -15,7 +15,7 @@ const App = () => {
       {/* <NavBar /> */}
       <div style={{ paddingTop: '69px', minHeight: 'calc(100vh - 80px)' }}>
         <Switch>
-          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/about" component={About} />
           <Route exact path="/register" component={Register} />

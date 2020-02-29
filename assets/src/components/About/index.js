@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from 'antd';
 import LoginModal from '../Login';
 import RegisterModal from '../Register';
+import { withContext } from '../../context/AppContext';
 
 class AboutPage extends React.Component {
   state = {
@@ -43,6 +44,8 @@ class AboutPage extends React.Component {
           wrappedComponentRef={this.saveFormRef}
           visible={this.state.visible}
         />
+        <br />
+        {this.props.secret}
         {/* <RegisterModal
           wrappedComponentRef={this.saveFormRef}
           visible={this.state.visible}
@@ -51,5 +54,4 @@ class AboutPage extends React.Component {
     );
   }
 }
-
-export default AboutPage;
+export default withContext(AboutPage);

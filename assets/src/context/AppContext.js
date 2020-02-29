@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-const todoAxios = axios.create();
+const authAxios = axios.create();
 
-todoAxios.interceptors.request.use(config => {
+authAxios.interceptors.request.use(config => {
   const token = localStorage.getItem('token');
-  config.headers.Authorization = `Bearer ${token}`;
+  config.headers.Authorization = token;
   return config;
 });
 
@@ -14,25 +14,26 @@ export class AppContextProvider extends Component {
   constructor() {
     super();
     this.state = {
-      todos: [],
+      secret: '',
       user: JSON.parse(localStorage.getItem('user')) || {},
       token: localStorage.getItem('token') || '',
     };
   }
 
   componentDidMount() {
-    // this.getTodos();
+    this.getProfile();
   }
 
-  getTodos = () => {
-    return todoAxios.get('/api/todo').then(response => {
-      this.setState({ todos: response.data });
+  getProfile = () => {
+    return authAxios.get('/users/profile').then(response => {
+      console.log(response.data);
+      this.setState({ secret: response.data.msg });
       return response;
     });
   };
 
   register = userInfo => {
-    return todoAxios.post('/users/register', userInfo).then(response => {
+    return authAxios.post('/users/register', userInfo).then(response => {
       const { success, msg } = response.data;
       console.log(response.data);
       return response;
@@ -40,7 +41,7 @@ export class AppContextProvider extends Component {
   };
 
   authenticate = credentials => {
-    return todoAxios.post('/users/authenticate', credentials).then(response => {
+    return authAxios.post('/users/authenticate', credentials).then(response => {
       //  console.log(response.data, 'response.data');
       const { token, user } = response.data;
       localStorage.setItem('token', token);
@@ -57,7 +58,7 @@ export class AppContextProvider extends Component {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     this.setState({
-      todos: [],
+      secret: '',
       user: {},
       token: '',
     });
@@ -67,7 +68,7 @@ export class AppContextProvider extends Component {
     return (
       <AppContext.Provider
         value={{
-          getTodos: this.getTodos,
+          getProfile: this.getProfile,
           register: this.register,
           authenticate: this.authenticate,
           logout: this.logout,
