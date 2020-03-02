@@ -32,7 +32,6 @@ class RightMenu extends React.Component {
   };
 
   handleCancel = () => {
-    console.log('can');
     this.setState({ loginVisible: false, registerVisible: false });
   };
   render() {

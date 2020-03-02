@@ -5,10 +5,13 @@ import { withContext } from '../../context/AppContext';
 class NormalLoginForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFields(async (err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        this.props.authenticate(values);
+        const res = await this.props.authenticate(values);
+        // if (res.success) {
+        //   this.props.onCancel();
+        // }
       }
     });
   };

@@ -21,7 +21,7 @@ export class AppContextProvider extends Component {
   }
 
   componentDidMount() {
-    this.getProfile();
+    // this.getProfile();
   }
 
   getProfile = () => {
@@ -35,7 +35,7 @@ export class AppContextProvider extends Component {
   register = userInfo => {
     return authAxios.post('/users/register', userInfo).then(response => {
       console.log(response.data);
-      return response;
+      return response.data;
     });
   };
 
@@ -49,7 +49,7 @@ export class AppContextProvider extends Component {
         user,
         token,
       });
-      return response;
+      return response.data;
     });
   };
 

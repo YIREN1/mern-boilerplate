@@ -21,10 +21,14 @@ class RegistrationForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
+    this.props.form.validateFieldsAndScroll(async (err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        this.props.register(values);
+        const res = await this.props.register(values);
+
+        if (res.success) {
+          this.props.onCancel();
+        }
       }
     });
   };
