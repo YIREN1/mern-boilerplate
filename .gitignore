@@ -2,8 +2,6 @@
 *node_modules/
 public/
 *.env
-.eslintrc.json
-.prettierrc
 *.traineddata
 *tesseract.js-ocr-result.pdf
 
