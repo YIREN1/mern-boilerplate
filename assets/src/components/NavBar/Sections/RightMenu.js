@@ -28,7 +28,7 @@ class RightMenu extends React.Component {
   };
 
   saveFormRef = formRef => {
-    formRef = formRef;
+    this.formRef = formRef;
   };
 
   handleCancel = () => {
@@ -36,7 +36,7 @@ class RightMenu extends React.Component {
     this.setState({ loginVisible: false, registerVisible: false });
   };
   render() {
-    const { user, isAuthenticated } = this.props;
+    const { isAuthenticated } = this.props;
     if (!isAuthenticated()) {
       return (
         <Menu mode={this.props.mode}>

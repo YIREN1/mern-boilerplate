@@ -85,7 +85,7 @@ class RegistrationForm extends React.Component {
         <Option value="1">+1</Option>
       </Select>,
     );
-    const { visible, form, onCancel } = this.props;
+    const { visible, onCancel } = this.props;
 
     return (
       <Modal
@@ -170,7 +170,8 @@ class RegistrationForm extends React.Component {
               valuePropName: 'checked',
             })(
               <Checkbox>
-                I have read the <a href="">agreement</a>
+                I have read the{' '}
+                <a href="https://ant.design/components/modal/">agreement</a>
               </Checkbox>,
             )}
           </Form.Item>

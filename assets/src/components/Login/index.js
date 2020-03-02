@@ -14,7 +14,7 @@ class NormalLoginForm extends React.Component {
   };
 
   render() {
-    const { visible, form, onCancel } = this.props;
+    const { visible, onCancel } = this.props;
     const { getFieldDecorator } = this.props.form;
     return (
       <Modal visible={visible} title="login" footer={null} onCancel={onCancel}>

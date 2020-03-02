@@ -34,7 +34,6 @@ export class AppContextProvider extends Component {
 
   register = userInfo => {
     return authAxios.post('/users/register', userInfo).then(response => {
-      const { success, msg } = response.data;
       console.log(response.data);
       return response;
     });
