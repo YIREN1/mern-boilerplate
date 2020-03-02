@@ -6,7 +6,7 @@
     "start": "node app",
     "dev": "nodemon app",
     "install:all": "yarn install && cd assets && yarn install",
-    "watch": "yarn start --prefix assets"
+    "watch": "cd assets && yarn start"
   },
   "author": "Yi Ren",
   "license": "MIT",
