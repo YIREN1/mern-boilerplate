@@ -14,10 +14,10 @@ class NormalLoginForm extends React.Component {
   };
 
   render() {
-    const { visible, onCancel, onCreate, form } = this.props;
+    const { visible, form } = this.props;
     const { getFieldDecorator } = this.props.form;
     return (
-      <Modal visible={visible} title="Create a new collection">
+      <Modal visible={visible} title="login" footer={null}>
         <Form onSubmit={this.handleSubmit} className="login-form">
           <Form.Item>
             {getFieldDecorator('email', {
