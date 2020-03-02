@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 const jwtSecret = process.env.JWT_SECRET;
+const User = require('../models/User');
 
 const generateJWToken = user => {
   const jwtUser = user;
@@ -10,6 +11,14 @@ const generateJWToken = user => {
   });
 };
 
+const findUser = async query => {
+  const foundUser = await User.findOne(query);
+  if (!foundUser) return null;
+  delete foundUser.password;
+  return foundUser;
+};
+
 module.exports = {
   generateJWToken,
+  findUser,
 };
