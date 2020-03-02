@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node app",
-    "dev": "nodemon app"
+    "dev": "nodemon app",
+    "install:all": "yarn install && cd assets && yarn install",
+    "watch": "yarn start --prefix assets"
   },
   "author": "Yi Ren",
   "license": "MIT",
