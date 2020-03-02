@@ -3,6 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 
 import LandingPage from './LandingPage';
 import About from './About';
+import Footer from './Footer';
+
 import NavBar from './NavBar/NavBar';
 import './App.css';
 
@@ -16,7 +18,7 @@ const App = () => {
           <Route exact path="/about" component={About} />
         </Switch>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </Suspense>
   );
 };
