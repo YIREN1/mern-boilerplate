@@ -85,10 +85,15 @@ class RegistrationForm extends React.Component {
         <Option value="1">+1</Option>
       </Select>,
     );
-    const { visible, form } = this.props;
+    const { visible, form, onCancel } = this.props;
 
     return (
-      <Modal visible={true} title="register" footer={null}>
+      <Modal
+        visible={visible}
+        title="register"
+        footer={null}
+        onCancel={onCancel}
+      >
         <Form {...formItemLayout} onSubmit={this.handleSubmit}>
           <Form.Item label="E-mail">
             {getFieldDecorator('email', {

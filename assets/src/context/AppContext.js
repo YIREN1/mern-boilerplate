@@ -64,6 +64,10 @@ export class AppContextProvider extends Component {
     });
   };
 
+  isAuthenticated = () => {
+    return !!this.state.token;
+  };
+
   render() {
     return (
       <AppContext.Provider
@@ -72,6 +76,7 @@ export class AppContextProvider extends Component {
           register: this.register,
           authenticate: this.authenticate,
           logout: this.logout,
+          isAuthenticated: this.isAuthenticated,
           ...this.state,
         }}
       >
