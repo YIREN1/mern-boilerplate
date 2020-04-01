@@ -10,7 +10,7 @@ ConnectDB();
 app.use('/', routes);
 
 // Port Number
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 1339;
 
 // Start Server
 app.listen(port, () => {

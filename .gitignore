@@ -1,6 +1,6 @@
 
 *node_modules/
-public/
+# public/
 *.env
 *.traineddata
 *tesseract.js-ocr-result.pdf

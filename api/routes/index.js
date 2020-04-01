@@ -8,7 +8,7 @@ const routes = express.Router();
 const users = require('./users');
 
 // Set static files
-routes.use(express.static(path.join(__dirname, '../../public')));
+routes.use(express.static(path.join(__dirname, '../../assets/build')));
 
 // Passport Middleware
 routes.use(passport.initialize());
@@ -29,7 +29,9 @@ routes.get('/status/health', (req, res) => {
 // the server to return the application's host page (index.html)
 // when asked for a file that it does not have.
 routes.get('*', (req, res) => {
-  res.sendFile('index.html', { root: path.join(__dirname, '../../public') });
+  res.sendFile('index.html', {
+    root: path.join(__dirname, '../../assets/build'),
+  });
 });
 
 // should never get here

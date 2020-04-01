@@ -1,62 +1,66 @@
 import React from 'react';
-import { Form, Icon, Input, Button, Checkbox, Modal } from 'antd';
+import { Input, Button, Checkbox, Modal, Form } from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
+
 import './style.css';
 import { withContext } from '../../context/AppContext';
 class NormalLoginForm extends React.Component {
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.form.validateFields(async (err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-        const res = await this.props.authenticate(values);
-        // if (res.success) {
-        //   this.props.onCancel();
-        // }
-      }
-    });
+  onFinish = async values => {
+    await this.props.authenticate(values);
   };
 
   render() {
     const { visible, onCancel } = this.props;
-    const { getFieldDecorator } = this.props.form;
     return (
       <Modal visible={visible} title="login" footer={null} onCancel={onCancel}>
-        <Form onSubmit={this.handleSubmit} className="login-form">
-          <Form.Item>
-            {getFieldDecorator('email', {
-              rules: [{ required: true, message: 'Please input your email!' }],
-            })(
-              <Input
-                prefix={
-                  <Icon type="email" style={{ color: 'rgba(0,0,0,.25)' }} />
-                }
-                placeholder="email"
-              />,
-            )}
+        <Form
+          name="normal_login"
+          className="login-form"
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={this.onFinish}
+        >
+          <Form.Item
+            name="email"
+            rules={[
+              {
+                required: true,
+                message: 'Please input your Email!',
+              },
+            ]}
+          >
+            <Input
+              prefix={<UserOutlined className="site-form-item-icon" />}
+              placeholder="Email"
+            />
+          </Form.Item>
+          <Form.Item
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: 'Please input your Password!',
+              },
+            ]}
+          >
+            <Input
+              prefix={<LockOutlined className="site-form-item-icon" />}
+              type="password"
+              placeholder="Password"
+            />
           </Form.Item>
           <Form.Item>
-            {getFieldDecorator('password', {
-              rules: [
-                { required: true, message: 'Please input your Password!' },
-              ],
-            })(
-              <Input
-                prefix={
-                  <Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />
-                }
-                type="password"
-                placeholder="Password"
-              />,
-            )}
-          </Form.Item>
-          <Form.Item>
-            {getFieldDecorator('remember', {
-              valuePropName: 'checked',
-              initialValue: true,
-            })(<Checkbox>Remember me</Checkbox>)}
+            <Form.Item name="remember" valuePropName="checked" noStyle>
+              <Checkbox>Remember me</Checkbox>
+            </Form.Item>
+
             <a className="login-form-forgot" href="/">
               Forgot password
             </a>
+          </Form.Item>
+
+          <Form.Item>
             <Button
               type="primary"
               htmlType="submit"
@@ -64,7 +68,6 @@ class NormalLoginForm extends React.Component {
             >
               Log in
             </Button>
-            Or <a href="/register">register now!</a>
           </Form.Item>
         </Form>
       </Modal>
@@ -72,8 +75,4 @@ class NormalLoginForm extends React.Component {
   }
 }
 
-const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(
-  NormalLoginForm,
-);
-
-export default withContext(WrappedNormalLoginForm);
+export default withContext(NormalLoginForm);
