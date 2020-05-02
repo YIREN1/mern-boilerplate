@@ -1,8 +1,9 @@
-require('dotenv').config();
-const express = require('express');
-require('colors');
-const routes = require('./api/routes/index.js');
-const ConnectDB = require('./api/config/mongo');
+import dotenv from 'dotenv';
+dotenv.config();
+import express from 'express';
+import colors from 'colors';
+import routes from './routes/index.js';
+import ConnectDB from './config/mongo';
 
 const app = express();
 ConnectDB();
@@ -19,7 +20,7 @@ app.listen(port, () => {
   );
 });
 
-process.on('unhandledRejection', e => {
-  console.log(e);
-  throw e.message;
-});
+// process.on('unhandledRejection', e => {
+//   console.log(e);
+//   throw e.message;
+// });

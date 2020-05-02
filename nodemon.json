@@ -1,4 +1,4 @@
 {
   "ignore": ["public", "node_modules/", "assets"],
-  "ext": "js"
+  "ext": "js,ts"
 }
